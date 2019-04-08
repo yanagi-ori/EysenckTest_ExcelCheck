@@ -18,7 +18,8 @@ for row in range(1, len(my_array)):
     results.write(row, 0, my_array[row][0])
     results.write(row, 1, total)
     iq.write(row, 0, my_array[row][0])
-    iq.write(row, 1, 75 + 2.5 * total)
+    if total == 0: iq.write(row, 1, "<75")
+    else: iq.write(row, 1, 75 + 2.5 * total)
 
 book.save("results.xls")
 print("Результат программы сохранен в файл results.xls")
