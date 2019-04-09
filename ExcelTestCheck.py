@@ -15,12 +15,13 @@ for row in range(1, len(my_array)):
     for i in range(1, len(my_array[row])):
         if str(my_array[row][i]).lower().replace(" ", '') == str(ans[i][0]):
             total += 1
-    results.write(row, 0, my_array[row][0])
-    results.write(row, 1, total)
-    iq.write(row, 0, my_array[row][0])
-    if total == 0: iq.write(row, 1, "<75")
-    else: iq.write(row, 1, 75 + 2.5 * total)
+    results.write(row - 1, 0, my_array[row][0])
+    results.write(row - 1, 1, total)
+    iq.write(row - 1, 0, my_array[row][0])
+    if total == 0: 
+            iq.write(row, 1, "<75")
+    else: 
+            iq.write(row, 1, 75 + 2.5 * total)
 
 book.save("results.xls")
 print("Результат программы сохранен в файл results.xls")
-input()
