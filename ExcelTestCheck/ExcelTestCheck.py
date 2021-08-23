@@ -42,9 +42,11 @@ def initialization():
 
     def calculate():
         if root.test_path is not None and root.ans_path is not None:
-            calculation(root.test_path.name, root.ans_path.name)
-            Label(text="Готово. Провертье папку с программой.").place(anchor='center',
-                                                                      rely=0.8, relx=0.5)
+            try:
+                calculation(root.test_path.name, root.ans_path.name)
+                Label(text="Готово. Провертье папку с программой.").place(anchor='center', rely=0.8, relx=0.5)
+            except Exception:
+                Label(text="Неверный тип входных данных.").place(anchor='center', rely=0.8, relx=0.5)
         else:
             showerror(title="Ошибка", message="Не выбраны исходные файлы")
 
