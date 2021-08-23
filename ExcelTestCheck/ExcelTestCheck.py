@@ -1,6 +1,7 @@
 from tkinter import Tk, Button, Label
 from tkinter.filedialog import askopenfile
 from tkinter.messagebox import showerror
+from PIL import ImageTk, Image
 
 import pyexcel
 import xlwt
@@ -31,9 +32,13 @@ def calculation(test_path, ans_path):
 def initialization():
     def open_test():
         root.test_path = askopenfile(parent=root)
+        if root.test_path is not None:
+            root.checkmark_l1.place(anchor='center', rely=0.4, relx=0.8)
 
     def open_ans():
         root.ans_path = askopenfile(parent=root)
+        if root.ans_path is not None:
+            root.checkmark_l2.place(anchor='center', rely=0.5, relx=0.8)
 
     def calculate():
         if root.test_path is not None and root.ans_path is not None:
@@ -55,6 +60,10 @@ root.title("EysenckTest")
 root.geometry("360x360")
 root.test_path = None
 root.ans_path = None
+
+checkmark_img = ImageTk.PhotoImage(Image.open("./checkmark.png").resize((25, 25), Image.ANTIALIAS))
+root.checkmark_l1 = Label(image=checkmark_img)
+root.checkmark_l2 = Label(image=checkmark_img)
 
 initialization()
 root.mainloop()
